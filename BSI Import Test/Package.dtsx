@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{7617EA0D-6E5B-4FDE-898E-E6E8EDE7F243}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{AFE217AB-62BC-4878-91A3-EE5A8EBADB96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,9 +26,68 @@
           DTS:ConnectionString="Data Source=SQL-THB4;Initial Catalog=BSI_LAB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQL-THB4_Test]"
+      DTS:CreationName="ADO.NET:SQL"
+      DTS:DTSID="{ECAAB0EB-8F8D-499E-865F-E7E62B6A70E6}"
+      DTS:ObjectName="SQL-THB4_Test">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQL-THB4;Integrated Security=SSPI;Connect Timeout=30;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Back Up Database Task"
+      DTS:CreationName="Microsoft.DbMaintenanceBackupTask"
+      DTS:Description="Back Up Database Task"
+      DTS:DTSID="{E63CB4AB-383E-44CD-B292-B70174EED39C}"
+      DTS:ExecutableType="Microsoft.DbMaintenanceBackupTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Back Up Database Task"
+      DTS:TaskContact="Back Up Database Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:ServerVersion="9"
+          SQLTask:ExtendedLogging="True"
+          SQLTask:LocalConnectionForLogging=""
+          SQLTask:TaskName=""
+          SQLTask:IgnoreDatabasesInNotOnlineState="False"
+          SQLTask:BackupAction="0"
+          SQLTask:BackupIsIncremental="False"
+          SQLTask:BackupFileGroupsFiles=""
+          SQLTask:BackupDeviceType="2"
+          SQLTask:BackupPhysicalDestinationType="2"
+          SQLTask:BackupDestinationType="0"
+          SQLTask:BackupDestinationAutoFolderPath=""
+          SQLTask:BackupActionForExistingBackups="0"
+          SQLTask:BackupCreateSubFolder="False"
+          SQLTask:BackupFileExtension=""
+          SQLTask:BackupVerifyIntegrity="False"
+          SQLTask:ExpireDate="2016-05-16T00:00:00"
+          SQLTask:RetainDays="14"
+          SQLTask:InDays="True"
+          SQLTask:UseExpiration="False"
+          SQLTask:BackupCompressionAction="0"
+          SQLTask:CopyOnlyBackup="False"
+          SQLTask:IgnoreReplicaType="False"
+          SQLTask:CredentialName=""
+          SQLTask:ContainerName=""
+          SQLTask:UrlPrefix=""
+          SQLTask:IsBackupEncrypted="False"
+          SQLTask:BackupEncryptionAlgorithm="0"
+          SQLTask:BackupEncryptorType="0"
+          SQLTask:BackupEncryptorName=""
+          SQLTask:Checksum="False"
+          SQLTask:ContinueOnError="False"
+          SQLTask:IsBlockSizeUsed="False"
+          SQLTask:IsMaxTransferSizeUsed="False" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
@@ -943,6 +1002,16 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7C71B0A5-D599-44C4-B5E0-72081392A923}"
+      DTS:From="Package\Back Up Database Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -954,11 +1023,37 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="153,42"
           Id="Package\Data Flow Task"
-          TopLeft="194,95" />
+          TopLeft="275,191" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Back Up Database Task"
+          TopLeft="249,41" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="348.25,83">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,108"
+              Start="0,0"
+              End="0,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
