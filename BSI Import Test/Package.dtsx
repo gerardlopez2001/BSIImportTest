@@ -11,11 +11,31 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{4A16D037-F309-4650-B95A-9B84061B1B68}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{53187F32-59B6-4996-AB52-C98F04FA502A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FTP Connection Manager]"
+      DTS:CreationName="FTP"
+      DTS:DTSID="{DDC54690-B222-4D7C-9B3F-D269DD8E593B}"
+      DTS:ObjectName="FTP Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="sftp.cdc.gov:21">
+          <DTS:FtpConnection
+            DTS:ServerName="sftp.cdc.gov"
+            DTS:ServerUserName="IEIP"
+            DTS:UsePassiveMode="False">
+            <DTS:Property
+              DTS:Name="ServerPassword"
+              Sensitive="1"
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAzJPvb5YQuU27ghFFOyQ66wAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC+QpP3kCXYW468BdmHkpfeAAAAAASAAACgAAAAEAAAADUUTDD2VgYnwJZAOlxg8lYYAAAAPQ1zkycDdNht7qqGcFs4vyYdInFVKEBPFAAAACajt2K8tYdCk4KrH3Q5ktFhrdzI</DTS:Property>
+          </DTS:FtpConnection>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SQL-THB4.BSI_LAB]"
       DTS:CreationName="OLEDB"
@@ -561,6 +581,19 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FTP Task"
+      DTS:CreationName="Microsoft.FtpTask"
+      DTS:Description="FTP Task"
+      DTS:DTSID="{7D7F8900-344C-45DE-874F-93BB94A5412A}"
+      DTS:ExecutableType="Microsoft.FtpTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FTP Task"
+      DTS:TaskContact="FTP Task; Microsoft Corporation; SQL Server 2016 RC0; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData />
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -578,6 +611,10 @@
           Size="153,42"
           Id="Package\Data Flow Task"
           TopLeft="275,191" />
+        <NodeLayout
+          Size="124,42"
+          Id="Package\FTP Task"
+          TopLeft="219,94" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -589,37 +626,25 @@
         <NodeLayout
           Size="136,42"
           Id="Package\Data Flow Task\XML Source"
-          TopLeft="524,194" />
+          TopLeft="572,67" />
         <NodeLayout
           Size="173,42"
           Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="621,349" />
+          TopLeft="550,251" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[book]"
-          TopLeft="592,236">
+          TopLeft="638.25,109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="115.5,113"
+              EndConnector="0,142"
               Start="0,0"
-              End="115.5,105.5">
+              End="0,134.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,52.5"
-                    Point2="0,56.5"
-                    Point3="4,56.5" />
-                  <mssgle:LineSegment
-                    End="111.5,56.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="111.5,56.5"
-                    Point2="115.5,56.5"
-                    Point3="115.5,60.5" />
-                  <mssgle:LineSegment
-                    End="115.5,105.5" />
+                    End="0,134.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
